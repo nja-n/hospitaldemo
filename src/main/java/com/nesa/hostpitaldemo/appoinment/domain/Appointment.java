@@ -2,20 +2,24 @@ package com.nesa.hostpitaldemo.appoinment.domain;
 
 import java.time.LocalDateTime;
 
-public class Appoinment {
+import com.nesa.hostpitaldemo.doctor.domain.Doctor;
+import com.nesa.hostpitaldemo.patient.domain.Patient;
+
+public class Appointment {
     private Long id;
     private AppointmentNumber number;
-    // private Doctor doctor;
-    // private Patient patient;
+    private Doctor doctor ;
+    private Patient patient;
     private LocalDateTime createdAt;
     // private User createdBy;
     private AppointmentStatus status;
 
-    public Appoinment(AppointmentNumber number, Long doctorId, Long patientId, Long userId) {
+    public Appointment(AppointmentNumber number, Long doctorId, Long patientId, Long userId) {
         this.number = number;
         this.status = AppointmentStatus.CREATED;
         this.createdAt = LocalDateTime.now();
-        // this.id = doctorId;
+        // this.doctor = doctorId;
+        // this.patient = patientId;
     }
 
     public void confirm() {
