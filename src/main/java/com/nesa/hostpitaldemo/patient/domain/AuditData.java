@@ -19,7 +19,7 @@ public class AuditData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pId;
+    private Long id;
 
     @CreatedBy
     @Column(updatable = false)

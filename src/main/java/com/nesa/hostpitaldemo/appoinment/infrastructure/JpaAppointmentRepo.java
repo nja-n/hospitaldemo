@@ -2,11 +2,15 @@ package com.nesa.hostpitaldemo.appoinment.infrastructure;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+
 import com.nesa.hostpitaldemo.appoinment.domain.Appointment;
 import com.nesa.hostpitaldemo.appoinment.domain.AppointmentRepository;
 import com.nesa.hostpitaldemo.appoinment.infrastructure.entities.AppointmentEntity;
+import com.nesa.hostpitaldemo.appoinment.infrastructure.repos.SpringDataAppointmentRepo;
 import com.nesa.hostpitaldemo.common.utils.Mapper;
 
+@Repository
 public class JpaAppointmentRepo implements AppointmentRepository {
 
     private final SpringDataAppointmentRepo repository;

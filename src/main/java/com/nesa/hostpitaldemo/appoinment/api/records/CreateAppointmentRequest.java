@@ -9,7 +9,8 @@ public record CreateAppointmentRequest(
         String proofId,
         String disease,
         String mobile,
-        String age,
-        Long doctorId
+        Integer age,
+        Long doctorId,
+        Long patientId
 ) {
 }
