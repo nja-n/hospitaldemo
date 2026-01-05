@@ -1,6 +1,8 @@
+
 package com.nesa.hostpitaldemo.patient.api;
 
 import com.nesa.hostpitaldemo.patient.application.PatientService;
+import com.nesa.hostpitaldemo.patient.application.dto.PatientRegDto;
 import com.nesa.hostpitaldemo.patient.domain.Patient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,17 +20,17 @@ public class PatientController {
     private final PatientService patientService;
 
     @PostMapping("/Register")
-    public ResponseEntity<Patient> registerPatient(@RequestBody Patient patient) {
-        Patient savedPatient = patientService.registerPatient(patient);
+    public ResponseEntity<Patient> registerPatient(@RequestBody PatientRegDto dto) {
+        Patient savedPatient = patientService.registerPatient(dto);
         return new ResponseEntity<>(savedPatient, HttpStatus.CREATED);
     }
+
 
     @GetMapping("/get/{id}")
     public ResponseEntity<Patient> getPatient(@PathVariable Long id) {
         Patient patient = patientService.findPatientById(id);
         return ResponseEntity.ok(patient);
     }
-
 
     @GetMapping("/get")
     public ResponseEntity<List<Patient>> getAllPatients() {

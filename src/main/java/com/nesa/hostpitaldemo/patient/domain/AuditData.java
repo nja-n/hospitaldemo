@@ -19,19 +19,18 @@ public class AuditData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pId;
+    private Long id;
 
-    @CreatedBy
+    // Remove @CreatedBy to allow manual setting from DTO
     @Column(updatable = false)
     private Long createdById;
 
-    @LastModifiedBy
     private Long updatedById;
 
-    @CreatedDate
+    @CreatedDate // Keep this! It handles the time automatically
     @Column(updatable = false)
     private LocalDateTime createdOn;
 
-    @LastModifiedDate
+    @LastModifiedDate // Keep this!
     private LocalDateTime updatedOn;
 }

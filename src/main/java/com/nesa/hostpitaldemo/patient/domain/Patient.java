@@ -19,8 +19,4 @@ public class Patient extends AuditData{
     private Integer pAge;
     private String disease;
 
-    @Enumerated(EnumType.STRING)
-    private PatientStatus pStatus;
-
-
 }

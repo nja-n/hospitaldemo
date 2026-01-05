@@ -1,13 +1,14 @@
 package com.nesa.hostpitaldemo.patient.application;
 
 
+import com.nesa.hostpitaldemo.patient.application.dto.PatientRegDto;
 import com.nesa.hostpitaldemo.patient.domain.Patient;
 import com.nesa.hostpitaldemo.patient.domain.PatientRepo;
-import com.nesa.hostpitaldemo.patient.domain.PatientStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -19,8 +20,18 @@ public class PatientService {
 
 
     @Transactional
-    public Patient registerPatient(Patient patient) {
-        patient.setPStatus(PatientStatus.valueOf(PatientStatus.NEW.name()));
+    public Patient registerPatient(PatientRegDto dto) {
+
+        Patient patient = Patient.builder()
+                .pName(dto.getPName())
+                .pAddress(dto.getPAddress())
+                .pMobile(dto.getPMobile())
+                .pAge(dto.getPAge())
+                .disease(dto.getDisease())
+                .build();
+        patient.setCreatedById(dto.getCreatedById());
+        patient.setCreatedOn(LocalDateTime.now());
+
         return patientRepo.save(patient);
     }
 
@@ -35,16 +46,5 @@ public class PatientService {
         return patientRepo.findAll();
     }
 
-    /**
-     * Updates patient disease/status (Domain logic trigger)
-     */
-    @Transactional
-    public Patient updatePatientDisease(Long id, String disease) {
-        Patient patient = findPatientById(id);
-        patient.setDisease(disease);
-        // Business Rule: Once a disease is assigned, they are waiting for consultation
-        patient.setPStatus(PatientStatus.valueOf(PatientStatus.WAITING.name()));
-        return patientRepo.save(patient);
-    }
 
 }
