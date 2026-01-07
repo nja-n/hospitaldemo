@@ -3,6 +3,7 @@ package com.nesa.hostpitaldemo.patient.api;
 
 import com.nesa.hostpitaldemo.patient.application.PatientService;
 import com.nesa.hostpitaldemo.patient.application.dto.PatientRegDto;
+import com.nesa.hostpitaldemo.patient.application.dto.PatientUpdateDto;
 import com.nesa.hostpitaldemo.patient.domain.Patient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,9 @@ public class PatientController {
         return ResponseEntity.ok(patients);
     }
 
+    @PutMapping("/updatePatient")
+    public Patient updatePatient(@RequestBody PatientUpdateDto patientUpdateDto){
+       Patient updatedPatient = patientService.updatePatient(patientUpdateDto);
+        return updatedPatient;
+    }
 }
