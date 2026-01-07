@@ -1,4 +1,4 @@
-package com.nesa.hostpitaldemo.appoinment.infrastructure;
+package com.nesa.hostpitaldemo.appoinment.infrastructure.repos;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -5,11 +5,18 @@ import java.time.LocalDateTime;
 import com.nesa.hostpitaldemo.doctor.domain.Doctor;
 import com.nesa.hostpitaldemo.patient.domain.Patient;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
+@AllArgsConstructor
 public class Appointment {
     private Long id;
     private AppointmentNumber number;
-    private Doctor doctor ;
-    private Patient patient;
+    private Long doctor ;
+    private Long patient;
     private LocalDateTime createdAt;
     // private User createdBy;
     private AppointmentStatus status;
@@ -18,8 +25,8 @@ public class Appointment {
         this.number = number;
         this.status = AppointmentStatus.CREATED;
         this.createdAt = LocalDateTime.now();
-        // this.doctor = doctorId;
-        // this.patient = patientId;
+        this.doctor = doctorId;
+        this.patient = patientId;
     }
 
     public void confirm() {
